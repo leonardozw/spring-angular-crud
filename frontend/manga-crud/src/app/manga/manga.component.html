@@ -1,0 +1,25 @@
+<div class="table-responsive">
+    <div class="table">
+        <thead class="table-header">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Release Date</th>
+                <th>Demographic</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+            <tr *ngFor="let manga of mangas">
+                <td>{{manga.id}}</td>
+                <td>{{manga.title}}</td>
+                <td>{{manga.author}}</td>
+                <td>{{manga.releaseDate}}</td>
+                <td>{{manga.demographic}}</td>
+                <td>{{manga.status}}</td>
+                <td>{{manga.description}}</td>
+            </tr>
+    </div>
+</div>
