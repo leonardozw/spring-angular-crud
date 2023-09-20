@@ -4,7 +4,7 @@
         <div class="search-bar">
             <mat-form-field>
                 <mat-label>Search</mat-label>
-                <input matInput placeholder="Ex. Naruto">
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Naruto" #input>
             </mat-form-field>
         </div>
         <div class="add-button">
@@ -12,50 +12,53 @@
         </div>
     </div>
 
-    <table mat-table [dataSource]="mangas" class="mat-elevation-z8">
-        <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Title </th>
-            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-        </ng-container>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="datasource" matSort class="mat-elevation-z8">
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="author">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
+                <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="releaseDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Release Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.releaseDate}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="demographic">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Demographic </th>
+                <td mat-cell *matCellDef="let element"> {{element.demographic | lowercase}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status | lowercase}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
     
-        <ng-container matColumnDef="author">
-            <th mat-header-cell *matHeaderCellDef> Author </th>
-            <td mat-cell *matCellDef="let element"> {{element.author}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="releaseDate">
-            <th mat-header-cell *matHeaderCellDef> Release Date </th>
-            <td mat-cell *matCellDef="let element"> {{element.releaseDate}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="demographic">
-            <th mat-header-cell *matHeaderCellDef> Demographic </th>
-            <td mat-cell *matCellDef="let element"> {{element.demographic | lowercase}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.status | lowercase}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="showEditDialog(element)">
-                    <mat-icon>edit</mat-icon>
-                </button>
-                <button mat-icon-button (click)="showConfirmationDialog(element.id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="showEditDialog(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="showConfirmationDialog(element.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    </div>
 </div>

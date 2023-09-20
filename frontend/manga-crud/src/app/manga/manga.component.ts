@@ -1,5 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { EditDialogService } from './edit-dialog/edit-dialog.service';
@@ -12,12 +15,16 @@ import { IMangaRes } from './mangaRes';
   templateUrl: './manga.component.html',
   styleUrls: ['./manga.component.css'],
 })
-export class MangaComponent implements OnInit, OnDestroy{
+export class MangaComponent implements OnInit, OnDestroy, AfterViewInit{
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   pageTitle = 'Manga List';
   sub!: Subscription;
   displayedColumns: string[] = ['title', 'author', 'releaseDate', 'demographic', 'status', 'description', 'actions'];
   mangas: IMangaRes[] = [];
+  datasource = new MatTableDataSource(this.mangas);
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -83,13 +90,24 @@ export class MangaComponent implements OnInit, OnDestroy{
     });
   }
 
+  applyFilter(event: Event): void{
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.datasource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngOnInit(): void {
     this.sub = this.mangaService.getMangaList().subscribe({
       next: mangaList => {
-        this.mangas = mangaList;
+        this.datasource.data = mangaList;
       },
       error: err => console.log(err)
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.datasource = new MatTableDataSource<IMangaRes>(this.mangas);
+    this.datasource.sort = this.sort;
+    this.datasource.paginator = this.paginator;
   }
 
   ngOnDestroy(){
