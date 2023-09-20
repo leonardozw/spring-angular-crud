@@ -1,0 +1,31 @@
+
+.table-container{
+    overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.table-actions {
+    margin-bottom: 16px;
+}
+
+.search-bar{
+    margin-right: 16px;
+}
+
+.mat-table {
+    width: 100%;
+}
+
+.mat-column-title,
+.mat-column-author,
+.mat-column-releaseDate,
+.mat-column-demographic,
+.mat-column-status,
+.mat-column-description,
+.mat-column-actions{
+    flex: 1;
+    min-width: 10px;
+    max-width: 80px;
+}
