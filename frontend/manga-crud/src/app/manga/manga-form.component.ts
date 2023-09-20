@@ -22,19 +22,11 @@ export class MangaFormComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private mangaService: MangaService, private _snackBar: MatSnackBar){
+  constructor(private mangaService: MangaService, private _snackBar: MatSnackBar) {
 
   }
 
-  /*openSnackBar(){
-    this._snackBar.open('Manga cadastrado com sucesso!', 'Fechar', {
-      duration: 5000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
-  }*/
-
-openSnackBar(messageToShow: string, snackBarClass: string): void{
+  openSnackBar(messageToShow: string, snackBarClass: string): void {
     this._snackBar.open(messageToShow, 'Fechar', {
       duration: 5000,
       horizontalPosition: this.horizontalPosition,
@@ -43,7 +35,7 @@ openSnackBar(messageToShow: string, snackBarClass: string): void{
     });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
     this.formData.releaseDate = this.convertDateToISO(this.formData.releaseDate);
     this.mangaService.postManga(this.formData).subscribe({
       next: () => {

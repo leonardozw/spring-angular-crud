@@ -21,6 +21,11 @@ export class MangaService {
     return this.http.post(this.mangaApiUrl + 'post', formData);
   }
 
+  updateManga(formData: IMangaReq, id: any): Observable<any> {
+    const url = `${this.mangaApiUrl}update/${id}`;
+    return this.http.post(url, formData);
+  }
+
   deleteManga(id: number): Observable<any> {
     return this.http.delete(this.mangaApiUrl + 'delete/' + id);
   }
