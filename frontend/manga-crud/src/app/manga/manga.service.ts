@@ -1,19 +1,24 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { IMangaRes } from './manga';
+import { IMangaReq } from './mangaReq';
+import { IMangaRes } from './mangaRes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MangaService {
 
-  private mangaApilist = 'http://localhost:8080/api/v1/manga/list';
+  private mangaApiUrl = 'http://localhost:8080/api/v1/manga/';
 
   constructor(private http: HttpClient) { }
 
   getMangaList(): Observable<IMangaRes[]> {
-    return this.http.get<IMangaRes[]>(this.mangaApilist).pipe(catchError(this.handleError));
+    return this.http.get<IMangaRes[]>(this.mangaApiUrl + 'list').pipe(catchError(this.handleError));
+  }
+
+  postManga(formData: IMangaReq): Observable<any> {
+    return this.http.post(this.mangaApiUrl + 'post', formData);
   }
 
   private handleError(err: HttpErrorResponse) {
