@@ -12,7 +12,7 @@ export class MangaComponent implements OnInit, OnDestroy{
 
   pageTitle = 'Manga List';
   sub!: Subscription;
-  displayedColumns: string[] = ['title', 'author', 'releaseDate', 'demographic', 'status', 'description'];
+  displayedColumns: string[] = ['title', 'author', 'releaseDate', 'demographic', 'status', 'description', 'actions'];
   mangas: IMangaRes[] = [];
 
   constructor(private mangaService: MangaService){}
