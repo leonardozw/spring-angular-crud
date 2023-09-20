@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 import { MangaService } from './manga.service';
 import { IMangaRes } from './mangaRes';
 
@@ -15,7 +16,29 @@ export class MangaComponent implements OnInit, OnDestroy{
   displayedColumns: string[] = ['title', 'author', 'releaseDate', 'demographic', 'status', 'description', 'actions'];
   mangas: IMangaRes[] = [];
 
-  constructor(private mangaService: MangaService){}
+  constructor(
+    private mangaService: MangaService,
+    private confirmationDialogService: ConfirmationDialogService
+    ){}
+
+  deleteManga(id: number): void{
+    this.mangaService.deleteManga(id).subscribe({
+      next: () => {
+        console.log('Manga deletado com sucesso!');
+        this.ngOnInit();
+      },
+      error: (err) => console.log(err)
+    });
+  }
+
+  showConfirmationDialog(id: number): void{
+    const dialogRef = this.confirmationDialogService.openConfirmDialog();
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === 'confirm'){
+        this.deleteManga(id);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.sub = this.mangaService.getMangaList().subscribe({

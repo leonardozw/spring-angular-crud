@@ -21,6 +21,10 @@ export class MangaService {
     return this.http.post(this.mangaApiUrl + 'post', formData);
   }
 
+  deleteManga(id: number): Observable<any> {
+    return this.http.delete(this.mangaApiUrl + 'delete/' + id);
+  }
+
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {

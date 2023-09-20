@@ -11,6 +11,7 @@ import { MangaFormComponent } from './manga/manga-form.component';
 import { MangaComponent } from './manga/manga.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from './shared/material.module';
+import { ConfirmationDialogComponent } from './manga/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MaterialModule } from './shared/material.module';
     MangaComponent,
     MangaDetailComponent,
     NavbarComponent,
-    MangaFormComponent
+    MangaFormComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
