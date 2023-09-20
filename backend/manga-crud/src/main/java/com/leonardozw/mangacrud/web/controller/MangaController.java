@@ -17,6 +17,8 @@ import com.leonardozw.mangacrud.domain.service.MangaService;
 import com.leonardozw.mangacrud.web.dto.MangaReq;
 import com.leonardozw.mangacrud.web.dto.MangaRes;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/manga")
 public class MangaController {
@@ -28,7 +30,7 @@ public class MangaController {
     }
 
     @PostMapping("post")
-    public ResponseEntity<MangaRes> post(@RequestBody MangaReq mangaReq){
+    public ResponseEntity<MangaRes> post(@Valid @RequestBody MangaReq mangaReq){
         MangaRes mangaRes = mangaService.create(mangaReq);
         return ResponseEntity.status(HttpStatus.CREATED).body(mangaRes);
     }
@@ -46,7 +48,7 @@ public class MangaController {
     }
 
     @PostMapping("update/{id}")
-    public ResponseEntity<MangaRes> update(@RequestBody MangaReq mangaReq, @PathVariable UUID id){
+    public ResponseEntity<MangaRes> update(@Valid @RequestBody MangaReq mangaReq, @PathVariable UUID id){
         MangaRes mangaRes = mangaService.update(mangaReq, id);
         return ResponseEntity.ok(mangaRes);
     }
