@@ -1,0 +1,14 @@
+.wrapper{
+    overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+.form-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

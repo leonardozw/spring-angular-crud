@@ -1,0 +1,57 @@
+<div class="wrapper">
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with back arrow icon" routerLink="/mangas">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="form-container">
+
+        <h1>Add new Manga</h1>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Author</mat-label>
+            <input matInput>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select>
+                <mat-option>Ongoing</mat-option>
+                <mat-option>Completed</mat-option>
+                <mat-option>Cancelled</mat-option>
+                <mat-option>Hiatus</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Demographic</mat-label>
+            <mat-select>
+                <mat-option>Shounen</mat-option>
+                <mat-option>Shoujo</mat-option>
+                <mat-option>Seinen</mat-option>
+                <mat-option>Josei</mat-option>
+                <mat-option>Kodomo</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Release Date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field>
+    
+        <div class="form-actions">
+            <button mat-raised-button>Send</button>
+        </div>
+    </div>
+</div>
