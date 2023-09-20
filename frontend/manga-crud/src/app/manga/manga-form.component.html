@@ -1,57 +1,63 @@
 <div class="wrapper">
 
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with back arrow icon" routerLink="/mangas">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with back arrow icon"
+        routerLink="/mangas">
         <mat-icon>arrow_back</mat-icon>
     </button>
-    <div class="form-container">
 
+    <div class="form-container">
         <h1>Add new Manga</h1>
-        <mat-form-field>
-            <mat-label>Title</mat-label>
-            <input matInput>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <mat-label>Author</mat-label>
-            <input matInput>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <mat-label>Status</mat-label>
-            <mat-select>
-                <mat-option>Ongoing</mat-option>
-                <mat-option>Completed</mat-option>
-                <mat-option>Cancelled</mat-option>
-                <mat-option>Hiatus</mat-option>
-            </mat-select>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <mat-label>Demographic</mat-label>
-            <mat-select>
-                <mat-option>Shounen</mat-option>
-                <mat-option>Shoujo</mat-option>
-                <mat-option>Seinen</mat-option>
-                <mat-option>Josei</mat-option>
-                <mat-option>Kodomo</mat-option>
-            </mat-select>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <mat-label>Release Date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    
-        <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    
-        <div class="form-actions">
-            <button mat-raised-button>Send</button>
-        </div>
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" name="title" [(ngModel)]="formData.title" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Author</mat-label>
+                <input matInput placeholder="Author" name="author" [(ngModel)]="formData.author" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select name="status" [(ngModel)]="formData.status">
+                    <mat-option value="ONGOING">Ongoing</mat-option>
+                    <mat-option value="COMPLETED">Completed</mat-option>
+                    <mat-option value="CANCELLED">Cancelled</mat-option>
+                    <mat-option value="HIATUS">Hiatus</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Demographic</mat-label>
+                <mat-select name="demographic" [(ngModel)]="formData.demographic">
+                    <mat-option value="SHOUNEN">Shounen</mat-option>
+                    <mat-option value="SHOUJO">Shoujo</mat-option>
+                    <mat-option value="SEINEN">Seinen</mat-option>
+                    <mat-option value="JOSEI">Josei</mat-option>
+                    <mat-option value="KODOMO">Kodomo</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Release Date</mat-label>
+                <input matInput [matDatepicker]="picker" name="releaseDate" [(ngModel)]="formData.releaseDate" required>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Description" name="description"
+                    [(ngModel)]="formData.description"></textarea>
+            </mat-form-field>
+
+            <div class="form-actions">
+                <button mat-raised-button>Send</button>
+            </div>
+        </form>
     </div>
 </div>
+
+<!-- <h4>{{ form.value | json}}</h4> -->

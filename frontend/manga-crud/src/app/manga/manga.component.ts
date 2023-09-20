@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IMangaRes } from './manga';
 import { MangaService } from './manga.service';
+import { IMangaRes } from './mangaRes';
 
 @Component({
   selector: 'mc-manga',
