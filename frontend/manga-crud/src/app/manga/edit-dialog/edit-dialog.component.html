@@ -1,0 +1,56 @@
+<div class="edit-container">
+    <h2 mat-dialog-title>Edit</h2>
+
+    <mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" name="title" [(ngModel)]="editableData.title" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Author</mat-label>
+            <input matInput placeholder="Author" name="author" [(ngModel)]="editableData.author" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" [(ngModel)]="editableData.status">
+                <mat-option value="ONGOING">Ongoing</mat-option>
+                <mat-option value="COMPLETED">Completed</mat-option>
+                <mat-option value="CANCELLED">Cancelled</mat-option>
+                <mat-option value="HIATUS">Hiatus</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Demographic</mat-label>
+            <mat-select name="demographic" [(ngModel)]="editableData.demographic">
+                <mat-option value="SHOUNEN">Shounen</mat-option>
+                <mat-option value="SHOUJO">Shoujo</mat-option>
+                <mat-option value="SEINEN">Seinen</mat-option>
+                <mat-option value="JOSEI">Josei</mat-option>
+                <mat-option value="KODOMO">Kodomo</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Release Date</mat-label>
+            <input matInput [matDatepicker]="picker" name="releaseDate" [(ngModel)]="editableData.releaseDate" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Description" name="description"
+                [(ngModel)]="editableData.description"></textarea>
+        </mat-form-field>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-button (click)="onCancelClick()">Cancelar</button>
+        <button mat-button color="warn" (click)="onConfirmClick()">Confirmar</button>
+    </mat-dialog-actions>
+</div>
