@@ -17,6 +17,11 @@ export class MangaService {
     return this.http.get<IMangaRes[]>(this.mangaApiUrl + 'list').pipe(catchError(this.handleError));
   }
 
+  getManga(id: any): Observable<IMangaRes | undefined> {
+    const url = `${this.mangaApiUrl}id/${id}`;
+    return this.http.get<IMangaRes>(url).pipe(catchError(this.handleError));
+  }
+
   postManga(formData: IMangaReq): Observable<any> {
     return this.http.post(this.mangaApiUrl + 'post', formData);
   }

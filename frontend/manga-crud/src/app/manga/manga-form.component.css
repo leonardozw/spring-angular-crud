@@ -12,6 +12,10 @@
     align-items: center;
 }
 
+.form-item{
+    margin-right: 16px;
+}
+
 form {
     width: 80%;
     margin: 0 auto;
