@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: manga-db
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=manga-db
+    ports:
+      - 5432:5432
+    networks:
+      - mangacrud-network
+  
+  mangacrud-backend:
+    image: leonardozw/mangacrud-backend:latest
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/manga-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - mangacrud-network
+
+  mangacrud-frontend:
+    image: leonardozw/mangacrud-frontend:latest
+    ports:
+      - 8081:80
+    networks:
+      - mangacrud-network
+
+networks:
+  mangacrud-network:
+    driver: bridge
+
+
