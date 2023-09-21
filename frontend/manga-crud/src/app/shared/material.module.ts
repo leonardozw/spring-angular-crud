@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -28,7 +29,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSnackBarModule,
     MatDialogModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ]
 })
 export class MaterialModule { }

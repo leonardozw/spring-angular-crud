@@ -1,1 +1,23 @@
-<p>manga-detail works!</p>
+<div class="card" *ngIf="manga">
+    <button mat-icon-button class="back-button" routerLink="/mangas">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <mat-card-title>{{manga.title}}</mat-card-title>
+            <mat-card-subtitle>{{manga.author}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="./assets/noimg.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <p>
+                <strong>Status:</strong> {{manga.status | lowercase}}
+            <p>
+                <strong>Demographic:</strong> {{manga.demographic | lowercase}}
+            <p>
+                <strong>Release Date:</strong> {{manga.releaseDate}}
+            <p>
+                <strong>Description:</strong> {{manga.description}}
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>
